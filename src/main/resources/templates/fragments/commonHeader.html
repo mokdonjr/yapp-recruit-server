@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div layout:fragment="header">
+	<header>
+        <div class="navbar navbar-inverse justify-content-between">
+                <h1 class="navbar-header">
+                <a href="http://yapp.co.kr/">YAPP 홈페이지로 가기</a>
+                </h1>
+				<ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right" role="navigation">
+					<li><a href="#">지원 가이드 보기</a></li>
+				</ul>
+				<ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right" role="navigation">
+					<li sec:authorize="hasRole('ROLE_USER')">
+						<a href="/apply/mypage">나의 지원 현황</a>
+					</li>
+<!-- 					<li> -->
+<!-- 						<img th:src="@{${session.user.profileImagePath}}" width="50" height="50"> -->
+<!-- 						<a href="#" th:text="${session.user.username}"></a> -->
+<!-- 					</li> -->
+					<li><a href="/logout">세션종료</a></li>
+				</ul>
+        </div>
+    </header>	
+</div>
+</body>
+</html>
